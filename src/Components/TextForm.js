@@ -1,12 +1,33 @@
 import React, { useState } from "react";
 
 export default function TextForm(props) {
-  const [text, setText] = useState("Enter your Text Here");
+  const [text, setText] = useState("");
   const ConverToUpper = () => {
     // console.log("you have clicked me " + text);
-    const newLine = text.toUpperCase();
+    let newLine = text.toUpperCase();
     setText(newLine);
   };
+  const ConverToLower = () => {
+    // console.log("you have clicked me " + text);
+    let newLine = text.toLowerCase();
+    setText(newLine);
+  };
+  const Clear = () => {
+    // console.log("you have clicked me " + text);
+    let newLine = "";
+    setText(newLine);
+  };
+  const MeaningfFullWord = () => {
+    let newtext = text.split(" ");
+    let meaning = newtext
+      .map((value, index, array) => {
+        return value[0].toUpperCase() + value.substring(1);
+      })
+      .join(" ");
+    setText(meaning);
+    //console.log(meaning);
+  };
+
   const onChange = (event) => {
     // console.log("you have clicked Chnaged ");
     setText(event.target.value);
@@ -29,17 +50,36 @@ export default function TextForm(props) {
         </div>
         <button
           type="button"
-          className="btn btn-primary"
+          className="btn btn-primary mx-2"
           onClick={ConverToUpper}
         >
           Change To UpperCase
         </button>
+        <button
+          type="button"
+          className="btn btn-primary mx-2"
+          onClick={ConverToLower}
+        >
+          Change To LowerCase
+        </button>
+
+        <button
+          type="button"
+          className="btn btn-primary mx-2"
+          onClick={MeaningfFullWord}
+        >
+          MeaningFull Word
+        </button>
+
+        <button type="button" className="btn btn-primary" onClick={Clear}>
+          Clear
+        </button>
       </div>
 
       <div className="container my-3">
-        <p>you have {text.split(" ").length} words in it</p>
-        <p>you have {text.length} characters in it</p>
-        <p>Your Summary</p>
+        <p>You have {text.split(" ").length} words in it</p>
+        <p>You have {text.length} characters in it</p>
+        <h2>{text}</h2>
       </div>
     </>
   );
