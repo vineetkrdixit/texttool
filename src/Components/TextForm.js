@@ -32,6 +32,7 @@ export default function TextForm(props) {
     // console.log("you have clicked Chnaged ");
     setText(event.target.value);
   };
+  console.log(props);
 
   return (
     <>
@@ -45,6 +46,9 @@ export default function TextForm(props) {
             id="MyForm"
             rows="8"
             value={text}
+            style={{
+              backgroundColor: props.mode === "dark" ? "grey" : "white",
+            }}
             onChange={onChange}
           ></textarea>
         </div>
